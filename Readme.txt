@@ -1,4 +1,4 @@
-# Data Processing Pipeline Project
+## Data Processing Pipeline Project ##
 
 This project contains two implementations of the same data-processing pipeline using **Python**:
 
@@ -45,3 +45,4 @@ python main.py
 - `imperative_pipeline/` : csv + loops imperative implementation
 
 You can modify `data.csv` and re-run both pipelines to test different cases.
+
