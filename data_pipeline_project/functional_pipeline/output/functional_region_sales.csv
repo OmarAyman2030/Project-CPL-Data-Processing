@@ -1,4 +1,11 @@
-City    ,   Sales
-Mandalay ,  101791.53
-Naypyitaw , 106452.07
-Yangon  ,   101610.96
+store_name,final_amount
+City Fresh Store,2296.11
+Corner Grocery,1661.96
+FamilyFood Express,908.1800000000001
+FreshMart Downtown,1668.85
+GreenGrocer Plaza,2281.81
+MegaMart Westside,1416.77
+QuickStop Market,1151.01
+SuperSave Central,2072.4
+Unknown,521.8
+ValuePlus Market,1434.93

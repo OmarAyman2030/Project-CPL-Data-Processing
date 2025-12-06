@@ -8,7 +8,7 @@ import analyzer as an
 import visualizer as viz
 
 BASE = Path(__file__).resolve().parent
-DATA = BASE.parent / 'SuperMarketData.csv'
+DATA = BASE.parent / 'grocery_chain_data.csv'
 OUT = BASE / 'output'
 OUT.mkdir(exist_ok=True)
 
@@ -17,19 +17,19 @@ def run_functional_pipeline():
     df = load_csv(DATA)
 
     # --- FIXED COLUMN NAMES BASED ON YOUR DATASET ---
-    SALES_COL = "Sales"
-    EXPENSES_COL = "Tax 5%"
-    DATE_COL = "Date"
-    REGION_COL = "City"
-
+    SALES_COL = "final_amount"      
+    EXPENSES_COL = "discount_amount"  
+    DATE_COL = "transaction_date"
+    REGION_COL = "store_name"
     # Functional transformations
-    df1 = proc.handle_missing(df, strategy='fill', fill_value=0)
+    # Fill missing store_name with 'Unknown' and numeric columns with 0
+    df1 = proc.handle_missing(df, strategy='fill', fill_value={'store_name': 'Unknown', 'final_amount': 0, 'discount_amount': 0})
     df2 = proc.standardize_date(df1, DATE_COL)
     df3 = proc.standardize_numbers(df2, [SALES_COL, EXPENSES_COL], decimals=2)
 
     # Transformations
     df4 = trans.compute_column(df3, 'Growth', SALES_COL, EXPENSES_COL, op='diff')
-    df5 = trans.filter_rows(df4, SALES_COL, 100)   # Only show high total > 100
+    df5 = trans.filter_rows(df4, SALES_COL, 100)  
     region_sales = trans.aggregate_sum(df5, REGION_COL, SALES_COL)
 
     # Analysis
